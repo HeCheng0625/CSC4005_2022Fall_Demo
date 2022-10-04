@@ -3,6 +3,11 @@
 #include <iostream>
 #include <chrono>
 
+void swap(int nums[], int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+}
 
 int main (int argc, char **argv){
 
@@ -26,11 +31,21 @@ int main (int argc, char **argv){
     std::chrono::duration<double> time_span;
     t1 = std::chrono::high_resolution_clock::now(); // record time
 
-    /* TODO BEGIN
-        Implement sequential odd even transposition sort
-        Code in this block is not a necessary. 
-        Replace it with your own code.
-    */
+    /* TODO BEGIN */
+    bool sorted = false;
+    while (!sorted) {
+        sorted = true;
+        for (int odd_even = 0; odd_even < 2; odd_even++) {
+            for (int i = odd_even; i < num_elements - 1; i += 2) {
+                if (elements[i] > elements[i+1]) {
+                    swap(elements, i, i+1);
+                    sorted = false;
+                }
+            }
+        }
+    }
+
+
     for (int i = 0; i < num_elements; i++) {
         sorted_elements[i] = elements[i];
     }
